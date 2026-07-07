@@ -2,7 +2,7 @@
 
 An exploratory data analysis and interactive dashboard built in Tableau, uncovering pricing, availability, and host patterns across ~48,895 Airbnb listings in New York City.
 
-🔗 **[View Interactive Dashboard on Tableau Public](#)**
+🔗 **[View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/NewYorkCityAirbnb_17768523314010/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
 
 ![NYC Airbnb Dashboard](dashboard-screenshot.png)
 
