@@ -1,6 +1,6 @@
-# 🏙️ NYC Airbnb Data Analysis — Tableau Dashboard
+# 🏙️ NYC Airbnb Data Analysis — Tableau Dashboard & Price Model
 
-An exploratory data analysis and interactive dashboard built in Tableau, uncovering pricing, availability, and host patterns across ~48,895 Airbnb listings in New York City.
+An exploratory data analysis and interactive dashboard built in Tableau, uncovering pricing, availability, and host patterns across ~48,895 Airbnb listings in New York City — plus a Python notebook that cleans the data and trains a model to predict nightly price.
 
 🔗 **[View Interactive Dashboard on Tableau Public](https://public.tableau.com/views/NewYorkCityAirbnb_17768523314010/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)**
 
@@ -31,6 +31,7 @@ New York City hosts thousands of Airbnb listings across its five boroughs, makin
 |------|---------|
 | Tableau Desktop / Public | Data visualization and dashboard creation |
 | Microsoft Excel / CSV | Preliminary data review and cleaning |
+| Python (pandas, scikit-learn, matplotlib) | Reproducible cleaning, EDA, and price model |
 | Kaggle / Inside Airbnb | Source platform for dataset |
 
 ## Key Insights
@@ -40,6 +41,27 @@ New York City hosts thousands of Airbnb listings across its five boroughs, makin
 - Listings with **higher review counts tend toward moderate pricing**, suggesting a sweet spot between affordability and quality
 - **Availability varies greatly by neighborhood** — some hosts maintain year-round listings while others operate seasonally
 - A **small number of hosts manage a disproportionately large share of listings**, indicating the presence of professional hosting businesses operating at scale
+
+## Python Analysis & Price Prediction
+
+📓 **[`analysis.ipynb`](analysis.ipynb)** — a reproducible companion to the dashboard:
+
+- **Cleaning:** drops invalid \$0 prices, excludes the 0.5% of listings above \$1,000/night, caps unrealistic minimum stays, and treats missing review data as "never reviewed" rather than an error
+- **EDA:** price distribution, borough × room-type medians, a price map, and host concentration
+- **Model:** predicts log nightly price from location, room type, reviews, and availability, compared against a simple *borough × room-type median* baseline
+
+| Model (held-out test set) | MAE | Median abs. error | R² (log price) |
+|---|---|---|---|
+| Baseline: borough × room-type median | \$54.10 | \$28.00 | 0.48 |
+| Ridge regression | \$49.61 | \$25.17 | 0.58 |
+| **Gradient boosting** | **\$45.50** | **\$22.87** | **0.65** |
+
+Gradient boosting reduces average error by ~16% over the baseline. Room type and neighbourhood dominate; once the neighbourhood is known, the borough adds nothing. The notebook discusses why the gain is modest (the dataset lacks size and amenity data) and its limitations.
+
+```bash
+pip install -r requirements.txt
+jupyter notebook analysis.ipynb
+```
 
 ## Dashboard Features
 
