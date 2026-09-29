@@ -1,4 +1,4 @@
-[README (1).md](https://github.com/user-attachments/files/29744643/README.1.md)# 🏙️ NYC Airbnb Data Analysis — Tableau Dashboard
+# 🏙️ NYC Airbnb Data Analysis — Tableau Dashboard
 
 An exploratory data analysis and interactive dashboard built in Tableau, uncovering pricing, availability, and host patterns across ~48,895 Airbnb listings in New York City.
 
